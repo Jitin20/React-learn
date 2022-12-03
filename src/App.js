@@ -1,44 +1,31 @@
 import './App.css';
-import React,{useState} from "react"
+import React,{useState} from "react";
+import { BrowserRouter, Routes, Route, Router } from 'react-router-dom';
+import Navigation from './Header/Navbar';
+import Getlist from './todos/getlist';
+import Createlist from './todos/createlist';
+import Header from './Components/Header';
+import ProductListing from './Components/ProductListing';
+import ProductDetails from './Components/ProductDetails';
+import Products from './Components/Products';
+
+
+
 
 function App() {
-  // function greeting(name) {
-    
-  //   alert(`Hello, ${name}`);
-  // }
-  
-  // function processUserInput(callback) {
-  //   const name = prompt("Please enter your name.");
-  //   callback(name);
-  // }
-  
-  // processUserInput(greeting);
-  //Example of Callback functions.
 
-  const [userInput, setUserInput] = useState('')
-  const inputChangeHandler = (event)=>{
-    setUserInput(event.target.value)
-  }
-
-  function handleClick(e)
-  {
-    console.log(e.target)
-  }
-
-  // function handleCopy(){
-  //   alert("Don't copy, be your own.")
-  // }
   return (
+<BrowserRouter>
     <div className="App">
-      <header className="App-header">
-        
-      <input type="text" name="name" 
-      onChange={inputChangeHandler} 
-      value = {userInput}/>
-<button onClick={handleClick}>Click Me</button>
-<p onCopy={handleCopy}>HEllo THere</p>
-      </header>
+<Header/>  
+<ProductListing/>
+    <Routes>
+    <Route path='/' exact component = {ProductListing}/>
+    <Route path = "/product/:id" exact component = {ProductDetails}/>
+    <Route>404 Not Found</Route>
+    </Routes>
     </div>
+    </BrowserRouter>
   );
 }
 
